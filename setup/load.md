@@ -19,7 +19,7 @@
 
 **אם `~/.claude/commands/load.md` לא קיים:** דלג — לא צריך לשאול, פשוט כותבים חדש.
 
-**אם `load.md` כבר קיים:** השתמש ב-AskUserQuestion (חלונית) כדי לשאול:
+**אם `load.md` כבר קיים:** חובה להשתמש בכלי `AskUserQuestion` (חלונית popup מובנית של Claude Code), **לא** בטקסט רגיל. אם הכלי לא זמין ברשימה הישירה, קרא קודם ל-`ToolSearch` עם `select:AskUserQuestion` כדי לטעון את הסכמה. שאל:
 
 > נמצא `~/.claude/commands/load.md` קיים. מה לעשות?
 >
@@ -45,39 +45,49 @@ https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/te
 
 ---
 
-## שלב ד' — שאלה שנייה (LOAD.md בפרויקט)
+## שלב ד' — ארכיטקטורת תיעוד בפרויקט
 
 **אם `<cwd>/.claude/LOAD.md` כבר קיים:** דלג על השלב הזה לגמרי. אמור למשתמש: "בפרויקט הזה כבר יש `.claude/LOAD.md`, לא נוגע בו." ועבור לפאזה הבאה.
 
-**אם לא קיים:** השתמש ב-AskUserQuestion כדי לשאול:
+**אם לא קיים:** חובה להשתמש בכלי `AskUserQuestion` (חלונית popup מובנית של Claude Code), **לא** בטקסט רגיל. אם הכלי לא זמין ברשימה הישירה, קרא קודם ל-`ToolSearch` עם `select:AskUserQuestion`. שאל:
 
-> לא מצאתי `.claude/LOAD.md` בפרויקט הנוכחי (`<שם תיקייה>`). `/load` זקוק לקובץ הזה כדי לדעת מה לטעון. מה לעשות?
+> לא מצאתי `.claude/LOAD.md` בפרויקט הנוכחי (`<שם תיקייה>`). `/load` עובד הכי טוב כשיש מבנה זיכרון בנוי מראש — אחרת הוא מפנה לקבצים שלא קיימים. מה ליצור?
 >
-> - **יצירת קובץ מינימלי** — אצור לך תבנית בסיסית שמצביעה על README.md וקבצי זיכרון אם קיימים. תוכל לערוך אחר כך.
-> - **יצירת קובץ מלא** — אצור תבנית מפורטת יותר עם מקומות לסמן REGISTRY, ARCH_PATTERNS, סקילים, וכד'. מתאים לפרויקטים עם הרבה הקשר.
-> - **דלג** — לא אצור כלום עכשיו. תיצור בעצמך בהמשך (או תריץ את ההתקנה שוב).
+> - **ארכיטקטורה מלאה (מומלץ)** — LOAD.md מפורט + תיקיית `.claude/memory/` עם 5 קבצי שלד (MEMORY, REGISTRY, ARCH_PATTERNS, CURRENT_SPRINT, negative-knowledge) + `.claude/tmp/`. כל קובץ מגיע עם הסבר מה נכנס בו ותבנית פנימית.
+> - **LOAD.md בלבד** — LOAD.md מפורט, בלי לייצר את קבצי הזיכרון. אתה תיצור אותם בעצמך לפי הצורך.
+> - **דלג** — לא יוצר כלום עכשיו.
 
 ---
 
-## שלב ה' — יצירת `.claude/LOAD.md` בפרויקט (אם המשתמש בחר)
+## שלב ה' — יצירת הקבצים (לפי הבחירה)
 
-### אם "מינימלי":
+### אם "ארכיטקטורה מלאה":
 
-צור את התוכן הבא בהתאמה לפרויקט:
+משוך את הקבצים הבאים מה-repo וכתוב אותם למיקומים המתאימים:
 
-```markdown
-# LOAD — <שם הפרויקט>
+| משוך מ- | כתוב ל- |
+|---------|--------|
+| `https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/templates/LOAD.example.md` | `<cwd>/.claude/LOAD.md` |
+| `https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/templates/memory/MEMORY.md` | `<cwd>/.claude/memory/MEMORY.md` |
+| `https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/templates/memory/REGISTRY.md` | `<cwd>/.claude/memory/REGISTRY.md` |
+| `https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/templates/memory/ARCH_PATTERNS.md` | `<cwd>/.claude/memory/ARCH_PATTERNS.md` |
+| `https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/templates/memory/CURRENT_SPRINT.md` | `<cwd>/.claude/memory/CURRENT_SPRINT.md` |
+| `https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/templates/memory/negative-knowledge.md` | `<cwd>/.claude/memory/negative-knowledge.md` |
 
-Claude, קרא את הקבצים הבאים עכשיו כדי לטעון את ההקשר של הפרויקט:
+**בכל קובץ, החלף `<שם הפרויקט>`** בשם תיקיית ה-cwd האמיתי לפני כתיבה.
 
-- `README.md`
-[אם קיים] - `.claude/memory/MEMORY.md`
-[אם קיים] - `CLAUDE.md`
+וודא שתיקיות `.claude/`, `.claude/memory/`, `.claude/tmp/` קיימות (צור אם חסרות). צור גם קובץ ריק `<cwd>/.claude/tmp/.gitkeep` כדי שתיקיית tmp תיכנס ל-git.
 
-אחרי שקראת, דווח בקצרה: "טעון — <שם הפרויקט>. מוכן לעבודה."
+דווח בעברית:
+
+```
+✓ נוצרה ארכיטקטורה מלאה:
+   .claude/LOAD.md
+   .claude/memory/ (5 קבצים)
+   .claude/tmp/
 ```
 
-### אם "מלא":
+### אם "LOAD.md בלבד":
 
 משוך את הגרסה המפורטת מה-repo:
 
@@ -87,13 +97,18 @@ https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/te
 
 **החלף `<שם הפרויקט>`** בשם תיקיית ה-cwd האמיתי לפני כתיבה.
 
-**הערה:** הוסף שורות התייחסות לקבצים רק אם הם באמת קיימים בפרויקט. אל תפנה לקובץ שלא קיים.
+**הוסף בראש הקובץ (מתחת לכותרת) שורת הערה:**
+```html
+<!-- קבצי .claude/memory/ לא נוצרו על ידי האשף. צור אותם לפי הצורך לפני שתסתמך על LOAD.md כדי לטעון זיכרון. -->
+```
 
-### כתיבה:
+וודא שתיקיית `.claude/` קיימת. כתוב את הקובץ.
 
-וודא שתיקיית `.claude/` בפרויקט קיימת (צור אם צריך). כתוב את התוכן ל-`<cwd>/.claude/LOAD.md`.
+דווח: "✓ `.claude/LOAD.md` נוצר. קבצי memory/ לא נוצרו — תיצור ידנית לפי הצורך."
 
-דווח בעברית: "✓ `.claude/LOAD.md` נוצר ב-<נתיב>."
+### אם "דלג":
+
+לא יוצר כלום. דווח: "דולג — לא נוצר LOAD.md. תוכל להריץ את ההתקנה שוב בעתיד, או ליצור ידנית."
 
 ---
 
