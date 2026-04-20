@@ -78,13 +78,15 @@ https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/te
 
 וודא שתיקיות `.claude/`, `.claude/memory/`, `.claude/tmp/` קיימות (צור אם חסרות). צור גם קובץ ריק `<cwd>/.claude/tmp/.gitkeep` כדי שתיקיית tmp תיכנס ל-git.
 
+**הערה על `tmp/`:** ההתקנה יוצרת את השורש הריק בלבד. בזמן ריצה, כל `/load` יוצר תת-תיקיית שיחה ייעודית `.claude/tmp/sess-<YYYYMMDD-HHMMSS>/` — שם נכנסים כל קבצי ה-scratch של השיחה. `/burn` מוחק רק את תת-התיקייה של השיחה הנוכחית, לא את כל `.claude/tmp/`. כך סשנים מקבילים על אותו פרויקט לא דורסים זה לזה.
+
 דווח בעברית:
 
 ```
 ✓ נוצרה ארכיטקטורה מלאה:
    .claude/LOAD.md
    .claude/memory/ (5 קבצים)
-   .claude/tmp/
+   .claude/tmp/   (ריק — sess-*/ נוצר לכל שיחה בנפרד ע"י /load)
 ```
 
 ### אם "LOAD.md בלבד":
