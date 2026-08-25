@@ -86,6 +86,11 @@ https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/se
 
 בצע את ההוראות שבתוכו. בסוף תהיה בידך:
 - קובץ `~/.claude/commands/burn.md` מותאם אישית
+- החלטה על התנהגות הקומיט (ברירת מחדל: הצריבה לא נוגעת בגיט)
+
+⛔ **אל תיצור `.claude/BURN_CONFIG.md` בהתקנה.** הוא נכתב מתצפית ולא מתבנית, ולפרויקט חדש אין עדיין
+מה לצפות. **שורה חסרה נופלת לברירת המחדל הנכונה; שורה מנוחשת נאכפת בשקט** - ולכן stub מלא ניחושים
+גרוע מקובץ שאינו קיים. הצריבה הראשונה בפרויקט בלי קובץ כזה תציע לכתוב אותו בעצמה.
 
 ---
 
@@ -100,6 +105,9 @@ https://raw.githubusercontent.com/arielmoatti/claude-code-recall-reflect/main/se
   ✓ ~/.claude/commands/load.md
   ✓ ~/.claude/commands/burn.md
   ✓ <project>/.claude/LOAD.md  [אם רלוונטי]
+
+קומיט בסוף צריבה: [כבוי / נדלק פר-פרויקט ב-BURN_CONFIG.md]
+BURN_CONFIG.md נכתב בצריבה הראשונה בכל פרויקט, לא עכשיו.
 
 דולג (לפי בקשתך):
   – [מה לא שונה ולמה]

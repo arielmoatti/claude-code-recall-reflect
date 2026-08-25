@@ -31,6 +31,7 @@ Install /load and /burn from https://raw.githubusercontent.com/arielmoatti/claud
 <li><code>~/.claude/commands/load.md</code> — פקודת <code>/load</code> מותאמת אישית</li>
 <li><code>~/.claude/commands/burn.md</code> — פקודת <code>/burn</code> מותאמת אישית</li>
 <li>תבנית <code>.claude/LOAD.md</code> בפרויקט הנוכחי (אם בחרת ליצור אותה)</li>
+<li><code>.claude/BURN_CONFIG.md</code> - <b>לא נוצר בהתקנה, וזה מכוון.</b> הוא נכתב מתצפית ולא מתבנית, ולפרויקט שנפתח לפני חמש דקות אין עדיין מה לצפות. הצריבה הראשונה שתרוץ בפרויקט בלי קובץ כזה תציע לכתוב אותו ממה שהיא באמת ראתה. תבנית לעיון: <code>templates/BURN_CONFIG.example.md</code></li>
 </ul>
 
 ההתקנה לא נוגעת בפקודות קיימות עם אותו שם — אם כבר יש לך `load.md` או `burn.md`, האשף יציע לך "שמור כמו שזה" או "החלף עם גרסה חדשה" לפני כל כתיבה.
